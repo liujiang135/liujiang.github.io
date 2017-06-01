@@ -132,7 +132,7 @@ audio{
 .right .volume{
     width:100px;
     height:10px;
-    background: red;
+    background: #80ADD2;
     margin-top: 20px;
     display: flex;
     cursor: pointer;
@@ -140,7 +140,7 @@ audio{
 .volumeh{
     width:90%;
     height:100%;
-    background: yellow;
+    background: #fff;
 }
 .vdot{
     width:13px;
