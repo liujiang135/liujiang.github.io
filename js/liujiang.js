@@ -2,12 +2,121 @@
 * @Author: Administrator
 * @Date:   2017-05-30 13:24:01
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-06-01 13:08:21
+* @Last Modified time: 2017-06-01 18:15:01
 */
 
 'use strict';
 
 $(function(){
+
+    let canvas=document.querySelectorAll('canvas');
+let ctx = canvas[0].getContext('2d');
+let ctx1 = canvas[1].getContext('2d');
+let ctx2 = canvas[2].getContext('2d');
+let ctx3 = canvas[3].getContext('2d');
+
+//画圆 显示百分比  进度
+// let ctx = document.querySelector('canvas').getContext('2d'); //绘 2D 图
+// canvas1.
+// circle(0,85)
+function circle(n,num){
+    let t;
+    ctx.font = 'bold 30px 宋体';
+    ctx.lineWidth = 10;         //线宽
+//    ctx.lineCap='round';        // round 圆形线帽  端点
+    ctx.strokeStyle = '#2C3E50';
+    ctx.setLineDash([4,2]);    //设置虚线，参数为数组，第一个值为实现宽度，第二个值为空白的宽度
+    ctx.lineDashOffset = 10;    //虚线起始偏移量
+    // ctx.shadowColor = 'red';    //阴影颜色
+    // ctx.shadowBlur = 5;         //阴影的模糊级数
+    t = setInterval(keyform,10);
+    function keyform(){
+        n++;
+        if(n == num){
+            clearInterval(t);
+        }
+        ctx.clearRect(0,0,300,300);  //清空画布
+        ctx.beginPath();
+        let anglue = (n * 360 / 100-90) * Math.PI / 180; // 从0开始
+        ctx.arc(100,90,80,-Math.PI/2,anglue,false);
+//            （圆心 x 坐标,Y坐标，半径，起始角-以弧度计，结束角-以弧度计，true逆时针/false顺时针）
+        ctx.stroke();
+        ctx.fillText(`${n}%`,80,100);//填充文本
+        ctx.closePath();
+    }    
+}
+
+
+function circle1(n,num){
+    let t1;
+    ctx1.font = 'bold 30px 宋体';
+    ctx1.lineWidth = 10;         //线宽
+    ctx1.strokeStyle = '#2C3E50';
+    ctx1.setLineDash([4,2]);  
+    ctx1.lineDashOffset = 10;    //虚线起始偏移量
+    t1 = setInterval(keyform,10);
+    function keyform(){
+        n++;
+        if(n == num){
+            clearInterval(t1);
+        }
+        ctx1.clearRect(0,0,300,300);  //清空画布
+        ctx1.beginPath();
+        let anglue = (n * 360 / 100-90) * Math.PI / 180; // 从0开始
+        ctx1.arc(100,90,80,-Math.PI/2,anglue,false);
+        ctx1.stroke();
+        ctx1.fillText(`${n}%`,80,100);//填充文本
+        ctx1.closePath();
+    }
+}
+
+function circle2(n,num){
+    let t1;
+    ctx2.font = 'bold 30px 宋体';
+    ctx2.lineWidth = 10;         //线宽
+    ctx2.strokeStyle = '#2C3E50';
+    ctx2.setLineDash([4,2]);  
+    ctx2.lineDashOffset = 10;    //虚线起始偏移量
+    t1 = setInterval(keyform,10);
+    function keyform(){
+        n++;
+        if(n == num){
+            clearInterval(t1);
+        }
+        ctx2.clearRect(0,0,300,300);  //清空画布
+        ctx2.beginPath();
+        let anglue = (n * 360 / 100-90) * Math.PI / 180; // 从0开始
+        ctx2.arc(100,90,80,-Math.PI/2,anglue,false);
+        ctx2.stroke();
+        ctx2.fillText(`${n}%`,80,100);//填充文本
+        ctx2.closePath();
+    }
+}
+
+function circle3(n,num){
+    let t1;
+    ctx3.font = 'bold 30px 宋体';
+    ctx3.lineWidth = 10;         //线宽
+    ctx3.strokeStyle = '#2C3E50';
+    ctx3.setLineDash([4,2]);  
+    ctx3.lineDashOffset = 10;    //虚线起始偏移量
+    t1 = setInterval(keyform,10);
+    function keyform(){
+        n++;
+        if(n == num){
+            clearInterval(t1);
+        }
+        ctx3.clearRect(0,0,300,300);  //清空画布
+        ctx3.beginPath();
+        let anglue = (n * 360 / 100-90) * Math.PI / 180; // 从0开始
+        ctx3.arc(100,90,80,-Math.PI/2,anglue,false);
+        ctx3.stroke();
+        ctx3.fillText(`${n}%`,80,100);//填充文本
+        ctx3.closePath();
+    }
+}
+
+
 	// $("img.lazy").lazyload({effect: "fadeIn"});
     
     //自动
