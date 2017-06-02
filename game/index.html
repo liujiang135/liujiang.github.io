@@ -16,14 +16,18 @@
             /*background-size:100%;*/
         }
         .box{
+            width:180px;
             position: absolute;
-            bottom:0;
+            top:0;
             left:0;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
         }
         h1,h2,h3,h4,h5{
-            width:120px;
+            width:80px;
             background: #009E38;
-            font-size: 30px;
+            font-size: 20px;
             color:#000;
             margin-right: 30px;
             margin-bottom:5px;
@@ -36,9 +40,10 @@
             color: #fff;
         }
         .sm{
-            width:230px;
-            font-size: 30px;
-            foloat:left;
+            width:180px;
+            font-size: 20px;
+            float:left;
+            /* float:right; */
             text-align: left;
             position: relative;
         }
@@ -48,22 +53,23 @@
             left:186px;
         }
         .sm .sm2{
-            width:100px;
-            height:20px;
+            width:85px;
+            height:13px;
             border:2px solid #fff;
             position: absolute;
             margin-top:5px;
             top:0px;
-            left:80px;
+            left:47px;
             border-radius:10px;
         }
         .sm3{
-            width:100px;
-            height:20px;
+            width:85px;
+            height:13px;
             background: blue;
             border-radius:10px;
         }
         .box1{
+            width: 150px;
             display: flex;
         }
         .box1 .stop, .box1 .continu{
@@ -81,14 +87,14 @@
             background:#000;
         }
         .cloud{
-            width:77%;
+            width:67%;
             height:100px;
             background-image:url("img/feiji.png");
             /*background-size: 100% 100px;*/
             background-size: contain;
             position: absolute;
             z-index: 12;
-            left:12%;
+            left:16%;
             top:0px;
             border-radius:10px;
             animation:cloud 2s ease-in-out infinite alternate;
@@ -101,31 +107,81 @@
                 transform: translateX(10%);
             }
         }
+        .paotai{
+            width: 240px;
+            height: 180px;
+            position: absolute;
+            left: 0;
+            bottom: 6px;
+        }
+        .pao{
+            width: 17px;
+            height: 17px;
+            position: absolute;
+            left: 233px;
+            top: 444px;
+            z-index: 14;
+            background: #ede624;
+            border-radius: 50%;
+            /* transition: all 0.2s ease; */  
+        }
+        .begin{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 200px;
+            margin: auto;
+            z-index: 14;
+            width: 200px;
+            height: 120px;
+            background: #368AAB;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 120px;
+            font-size: 40px;
+            cursor: pointer;
+            border: 3px solid #A6D4E3;
+            box-sizing: border-box;
+            background: -webkit-linear-gradient(top,#fff 10%,#009E38 40%,#009E38 60%,#fff 90%);
+            /*从顶部开始变色*/
+        }
     </style>
     <body>
+    <div class="begin">开始游戏</div>
+   <!--  <div class="next">
+       <div class="next1">下一关</div>
+   </div> -->
     <div class="box">
-        <!--<div class="box"></div>-->
-        <div class="box1">
-            <div class="continu">继续</div>
-            <div class="stop">暂停</div>
-        </div>
+        
         <h3>关卡:<span>10</span></h3>
-        <h5>个数:<span>20</span></h5>
-        <h4>总分:<span>20</span></h4>
+        <!-- <h5>个数:<span>20</span></h5> -->
+        <!-- <h4>总分:<span>20</span></h4> -->
         <h1>得分:<span>20</span></h1>
-        <h2 class="sm">生命:<span>20</span>
+        <h2 class="sm">生命:
+            <!-- <span>20</span> -->
             <div class="sm2">
                 <div class="sm3"></div>
             </div>
         </h2>
+        <div class="box1">
+            <div class="continu">继续</div>
+            <div class="stop">暂停</div>
+        </div>
 
     </div>
-        <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="paotai">
+        <img src="img/pao.png" alt="" width="100%" height="100%">
+    </div>
+    <div class="pao"><img src="img/pao1.png" alt="" width="100%" height="100%"></div>
     </body>
 </html>
 <script src="js/game.js"></script>
 <script src="js/function.js"></script>
 <script>
-	let game1=new Game();
-	game1.start();
+window.onload=function(){
+    let game1=new Game();
+    game1.start();
+}
+	
 </script>

@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-05-10 18:24:38
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-05-31 14:33:49
+* @Last Modified time: 2017-06-02 17:46:48
 */
 
 'use strict';
@@ -76,37 +76,72 @@ function Game(){
 	this.span1=document.querySelector('h1 span');
     this.span2=document.querySelector('h2 span');
     this.span3=document.querySelector('h3 span');
-    this.maxscore=document.querySelector('h4 span');
-    this.maxlength=document.querySelector('h5 span');
+    // this.maxscore=document.querySelector('h4 span');
+    // this.maxlength=document.querySelector('h5 span');
     this.stop1=document.querySelector('.stop');
     this.continu=document.querySelector('.continu');
     this.span1.innerText=this.score;
-    this.span2.innerText=this.sm;
+    // this.span2.innerText=this.sm;
     this.span3.innerText=this.gq;
-    this.maxscore.innerText=this.max;
-    this.maxlength.innerText=this.charlength;
+    // this.maxscore.innerText=this.max;
+    // this.maxlength.innerText=this.charlength;
 
     this.sm2=document.querySelector('.sm2');
     this.sm3=document.querySelector('.sm3');
-    this.sm3.style.width='100px';
+    this.sm3.style.width='85px';
+    this.pao = document.querySelector('.pao');
+    this.begin1 = document.querySelector('.begin');
 }
 
 Game.prototype={
 	start:function(){
-		this.getElements(this.charlength);
-		this.drop();
 		this.key();
 		this.stop(this.stop1);
 		this.continue1(this.continu);
+		this.begin();
+	},
+	begin:function(){
+		let self = this;
+		this.begin1.onclick = function(){
+			self.drop();
+			self.getElements(self.charlength);
+			self.begin1.style.display = 'none';
+		}
+		/*document.body.onkeydown=function(e){
+			if(e.keyCode == 13){
+				alert(1)
+				self.drop();
+				self.getElements(self.charlength);
+				self.begin1.style.display = 'none';
+			}
+		}*/
 	},
 	key:function(){  //按键输入
 		document.body.onkeydown=function(e){
 			let code=String.fromCharCode(e.keyCode); //按键值  转换成字符串
 			for(let i=0;i<this.currentele.length;i++){
+				let self = this;
 				if(code == this.currentele[i].innerText){
-                    document.body.removeChild(this.currentele[i]);
+					let top12 = this.currentele[i].offsetTop+this.speed;
+					let left12 = this.currentele[i].offsetLeft;
+					this.pao.style.display = 'block';
+					let dangqian = this.currentele[i];
+					let pao1 = this.pao;
+					setTimeout(function(){    //炮弹往伞兵上打
+						pao1.style.left =left12+31+'px';
+						pao1.style.top =top12+80+'px';
+						self.pao.style.transition ='all 0.5s ease';
+					},0)
+					setTimeout(function(){     //伞兵继续往下落10,被击中后消失
+						dangqian.style.transition ='all 0.5s linear';
+						dangqian.style.top = dangqian.offsetTop+10+'px';
+					},0);
+					setTimeout(function(){     //炮弹大掉伞兵后一起消失
+						document.body.removeChild(dangqian);
+						// self.pao.style.display = 'none';
+					},600);
                     this.currentele.splice(i,1);
-                    this.currentpos.splice(i,1)
+                    this.currentpos.splice(i,1);
                     // 得分  +     给了    分数
 					this.score++;
                     this.span1.innerText=this.score;
@@ -115,6 +150,13 @@ Game.prototype={
                     	this.next();
 					}
 				}
+				setTimeout(function(){
+						self.pao.style.top ='451px';
+						self.pao.style.left ='233px';
+						self.pao.style.display = 'block';
+						self.pao.style.transition ='all 0s ease';
+				},500)
+
 			}
 			if(this.currentele.length < this.charlength){
 				this.getChar();
@@ -131,15 +173,6 @@ Game.prototype={
 			return value.innerText==text;
 		})
 		return a;
-	/*	for(let i=0;i<this.currentele.length;i++){
-			if(this.currentele[i].innerText==text){
-				return true;
-			}/!*else{
-				// console.log('不相等')
-				continue aa;
-				// alert(1)
-			};*!/
-		}*/
 	},
     checkPosition:function(lefts){
         return this.currentpos.some(function(value){
@@ -150,12 +183,6 @@ Game.prototype={
          return this.currentpos.some(function(value){
 				return (lefts+80) > value && (lefts-80)<value ;
 		})
-		/*for(let i=0;i<this.currentpos.length;i++){
-			let value=this.currentpos[i].offsetLeft;
-			if( (lefts+80) > value && (lefts-80)<value){
-				return true;
-			}
-		}*/
 	},
 	getChar:function(){
 		let num = Math.floor(Math.random()*this.chararr.length);
@@ -194,27 +221,23 @@ Game.prototype={
 		self.t=setInterval(function(){
 			for(let i=0;i<self.currentele.length;i++){
 				let tops=self.currentele[i].offsetTop+self.speed;
-				// console.log(self.speed);
                 self.currentele[i].style.top=tops+'px';
+                
 				if(tops>=(self.ch-100)){
 					document.body.removeChild(self.currentele[i]);
 					self.currentele.splice(i,1);
 					self.currentpos.splice(i,1);
                     // 生命 +   给了 生命
                     self.sm--;
-					self.span2.innerText=self.sm;
+					// self.span2.innerText=self.sm;
                     self.sm3.style.width=self.sm2.offsetWidth*(self.sm/10)+'px';
-					/*if(self.sm<=0){
-						clearInterval(self.t);
-                        window.open('error错误弹框.html','_blank','width=500,height=500,left=200,top=100');
-					}*/
 					if(self.sm<=0){
 						clearInterval(self.t);
 						self.flag=window.confirm('您失败了，要重来一次吗？');
 						if(self.flag){
                             self.restart();
 						}else{
-                            window.open('error错误弹框.html','_blank','width=500,height=500,left=200,top=100');
+                            window.open('error错误弹框.html','_blank','width=500,height=500,left=200,top=200');
 						}
 					}
 				}
@@ -225,13 +248,15 @@ Game.prototype={
 		},100)
 	},
 	stop:function(stop1){
+		let self = this;
 		stop1.onclick=function(){
-			clearInterval(this.t);
+			clearInterval(self.t);
 		}.bind(this)
 	},
     continue1:function(go){
+    	let self = this;
 		go.onclick=function(){
-			this.drop();
+			self.drop();
 		}.bind(this);
 	},
     restart:function(){
@@ -246,19 +271,20 @@ Game.prototype={
         this.currentele=[];
         this.currentpos=[];
         this.span1.innerText=this.score;
-        this.span2.innerText=this.sm;
+        // this.span2.innerText=this.sm;
         this.span3.innerText=this.gq;
         this.max=10;
         this.charlength=5;
-        this.maxscore.innerText=this.max;
-        this.maxlength.innerText=this.charlength;
-        // this.sm3.style.width=this.sm2.offsetWidth;
-        this.sm3.style.width='100px';
+        // this.maxscore.innerText=this.max;
+        // this.maxlength.innerText=this.charlength;
+        this.sm3.style.width='85px';
         this.start();
+        this.begin1.style.display = 'block';
+        this.begin();
 		// 初始状态
 		/*
 		*
-		* 停止
+		* 停止   
 		* 元素删除  数据  for循环清空数组
 		* 					重新建数组，创生命、分数、得分
 		* 生命 分数
@@ -267,8 +293,11 @@ Game.prototype={
 		* */
 	},
 	next:function(){
-        // window.open('error错误弹框.html','_blank','width=500,height=500,left=200,top=100');
         window.open('pass.html','_blank','width=300,height=50,left=500,top=100');
+		/*if(!confirm('恭喜通关，是否进入下一关？')){
+			close();
+		}*/
+        
     	clearInterval(this.t);
     	for(let i=0;i<this.currentele.length;i++){
     		document.body.removeChild(this.currentele[i]);
@@ -281,10 +310,12 @@ Game.prototype={
         this.currentele=[];
         this.currentpos=[];
         this.span1.innerText=this.score;
-        this.span2.innerText=this.sm;
+        // this.span2.innerText=this.sm;
         this.span3.innerText=this.gq;
-        this.maxscore.innerText=this.max;
-        this.maxlength.innerText=this.charlength;
+        // this.maxscore.innerText=this.max;
+        // this.maxlength.innerText=this.charlength;
+        this.drop();
+        this.getElements(self.charlength);
         this.start();
 	}
 }
