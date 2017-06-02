@@ -18,7 +18,7 @@
         .box{
             width:180px;
             position: absolute;
-            top:0;
+            top:6px;
             left:0;
             display: flex;
             justify-content: flex-start;
@@ -26,7 +26,7 @@
         }
         h1,h2,h3,h4,h5{
             width:80px;
-            background: #009E38;
+            background: #DCE2F3;
             font-size: 20px;
             color:#000;
             margin-right: 30px;
@@ -38,6 +38,27 @@
         }
         h1 span,h2 span,h3 span,h4 span,h5 span{
             color: #fff;
+        }
+        .begin{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 200px;
+            margin: auto;
+            z-index: 14;
+            width: 200px;
+            height: 120px;
+            background: #DCE2F3;
+            box-shadow: 0px 1px 3px 3px #ccc inset;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 120px;
+            font-size: 40px;
+            cursor: pointer;
+            border: 3px solid #A6D4E3;
+            box-sizing: border-box;
+            /* background: -webkit-linear-gradient(top,#fff 10%,#F6E5A5 40%,#F6E5A5 60%,#fff 90%); */
+            /*从顶部开始变色*/
         }
         .sm{
             width:180px;
@@ -65,7 +86,7 @@
         .sm3{
             width:85px;
             height:13px;
-            background: blue;
+            background: #B11521;
             border-radius:10px;
         }
         .box1{
@@ -89,7 +110,7 @@
         .cloud{
             width:67%;
             height:100px;
-            background-image:url("img/feiji.png");
+            background-image:url("img/flydrone.jpg");
             /*background-size: 100% 100px;*/
             background-size: contain;
             position: absolute;
@@ -125,26 +146,7 @@
             border-radius: 50%;
             /* transition: all 0.2s ease; */  
         }
-        .begin{
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 200px;
-            margin: auto;
-            z-index: 14;
-            width: 200px;
-            height: 120px;
-            background: #368AAB;
-            border-radius: 5px;
-            text-align: center;
-            line-height: 120px;
-            font-size: 40px;
-            cursor: pointer;
-            border: 3px solid #A6D4E3;
-            box-sizing: border-box;
-            background: -webkit-linear-gradient(top,#fff 10%,#009E38 40%,#009E38 60%,#fff 90%);
-            /*从顶部开始变色*/
-        }
+        
     </style>
     <body>
     <div class="begin">开始游戏</div>
