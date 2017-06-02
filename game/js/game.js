@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-05-10 18:24:38
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-06-02 17:46:48
+* @Last Modified time: 2017-06-02 18:17:20
 */
 
 'use strict';
@@ -151,7 +151,7 @@ Game.prototype={
 					}
 				}
 				setTimeout(function(){
-						self.pao.style.top ='451px';
+						self.pao.style.top ='444px';
 						self.pao.style.left ='233px';
 						self.pao.style.display = 'block';
 						self.pao.style.transition ='all 0s ease';
