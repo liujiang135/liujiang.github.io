@@ -81,17 +81,9 @@ window.onload=function(){
         obj=e.target;
         let x1=e.offsetX;
         let bili=x1/mxia.offsetWidth;
+        audio.currentTime=bili*timeall;
         console.log(bili);
         jindu.style.width=mxia.offsetWidth*bili+'px'; //进度条位置
-        timenow=timeall*bili;
-        console.log(timenow)
-
-        // audio.seeked=function(){
-        // audio.currentTime=timenow;
-        // console.log(audio.currentTime)
-        // init(database[index]);
-        // audio.play();
-        // }
     }
 
     //进度条
