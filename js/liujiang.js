@@ -9,16 +9,17 @@
 
 $(function(){
 
-    let canvas=document.querySelectorAll('canvas');
-let ctx = canvas[0].getContext('2d');
-let ctx1 = canvas[1].getContext('2d');
-let ctx2 = canvas[2].getContext('2d');
-let ctx3 = canvas[3].getContext('2d');
+//     let canvas=document.querySelectorAll('canvas');
+// let ctx = canvas[0].getContext('2d');
+// let ctx1 = canvas[1].getContext('2d');
+// let ctx2 = canvas[2].getContext('2d');
+// let ctx3 = canvas[3].getContext('2d');
 
 //画圆 显示百分比  进度
 // let ctx = document.querySelector('canvas').getContext('2d'); //绘 2D 图
 // canvas1.
 // circle(0,85)
+/*
 function circle(n,num){
     let t;
     ctx.font = 'bold 30px 宋体';
@@ -115,6 +116,7 @@ function circle3(n,num){
         ctx3.closePath();
     }
 }
+*/
 
 
 	// $("img.lazy").lazyload({effect: "fadeIn"});
